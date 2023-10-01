@@ -24,7 +24,14 @@ pipeline {
             sh "mvn clean package -DskipTests=true"
             archive 'target/*.jar'
       }
-    } 
+      }  
+      stage('Docker Build and Push') {
+            steps {
+            sh "printenv"
+            sh "docker build -t siddhart67/numeric-app:""$GIT_COMMIT" //comment
+            sh "printenv"
+      }
+      } 
 
     }
 }
